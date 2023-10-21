@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  Mongodb-local:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=mygrocerylist
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=Pa55w&rd
+      # connection string : mongodb://[username]:[password]@localhost:27017/mygrocerylist
+volumes:
+  mongodata:

@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  MySql-local:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysqldb:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_DATABASE=sample
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=QWEqwe123@
+      # jdbc:mysql://localhost:3306/lhtk
+      # connection string : jdbc:mysql://root:QWEqwe123@localhost:3306/sample
+volumes:
+  mysqldb:
+    driver: local
