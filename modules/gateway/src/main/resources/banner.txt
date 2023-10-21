@@ -1,0 +1,16 @@
+${AnsiColor.BRIGHT_WHITE}
+oooooooooo.                              .             oooo                  .oooooo.                  .
+`888'   `Y8b   o8o              o8o    .o8             `888                 d8P'  `Y8b               .o8
+ 888      888 oooo   .oooooooo oooo  .o888oo  .oooo.    888                888            .oooo.   .o888oo  .ooooo.  oooo oooo    ooo  .oooo.   oooo    ooo  .oooo.o
+ 888      888 `888  888' `88b  `888    888   `P  )88b   888                888           `P  )88b    888   d88' `88b  `88. `88.  .8'  `P  )88b   `88.  .8'  d88(  "8
+ 888      888  888  888   888   888    888    .oP"888   888     8888888    888     ooooo  .oP"888    888   888ooo888   `88..]88..8'    .oP"888    `88..8'   `"Y88b.
+ 888     d88'  888  `88bod8P'   888    888 . d8(  888   888                `88.    .88'  d8(  888    888 . 888    .o    `888'`888'    d8(  888     `888'    o.  )88b
+o888bood8P'   o888o `8oooooo.  o888o   "888" `Y888""8o o888o                `Y8bood8P'   `Y888""8o   "888" `Y8bod8P'     `8'  `8'     `Y888""8o     .8'     8""888P'
+                    d"     YD                                                                                                                   .o..P'
+                    "Y88888P'
+${AnsiColor.BRIGHT_CYAN}
+===============================================================================================================================================
+System encoding          :${AnsiStyle.BOLD}${AnsiColor.BRIGHT_YELLOW} UTF-8${AnsiStyle.NORMAL}
+${AnsiColor.BRIGHT_WHITE}Powered by Spring Boot   :${AnsiStyle.BOLD}${AnsiColor.BRIGHT_YELLOW} ${spring-boot.version}${AnsiStyle.NORMAL}
+${AnsiColor.BRIGHT_WHITE}Powered by Spring Clouds :${AnsiStyle.BOLD}${AnsiColor.BRIGHT_YELLOW} 2022.0.4
+${AnsiStyle.NORMAL}

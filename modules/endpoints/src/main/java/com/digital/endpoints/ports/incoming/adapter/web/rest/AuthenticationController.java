@@ -1,0 +1,40 @@
+package com.digital.endpoints.ports.incoming.adapter.web.rest;
+
+import com.digital.endpoints.config.security.service.AuthenticationService;
+import com.digital.endpoints.ports.incoming.request.SignInRequest;
+import com.digital.endpoints.ports.incoming.request.SignUpRequest;
+import com.digital.endpoints.ports.incoming.response.JwtAuthenticationResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Author  : pisethraringsey.suon
+ * Email   : pisethraingsey@dr-tech.com
+ * Date    : 10/10/23
+ * Project : com.digital.system
+ */
+@Slf4j
+@RestController
+@RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
+public class AuthenticationController {
+
+    private final AuthenticationService authenticationService;
+
+    @PostMapping("/sign-up")
+    public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody SignUpRequest request) {
+        log.info(">>>>>>> Request signing up a new user: {}", request.getEmail());
+        return ResponseEntity.ok(authenticationService.signUp(request));
+    }
+
+    @PostMapping("/sign-in")
+    public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody SignInRequest request) {
+        log.info(">>>>>>> Request signing in existing user: {}", request.getEmail());
+        return ResponseEntity.ok(authenticationService.signIn(request));
+    }
+}

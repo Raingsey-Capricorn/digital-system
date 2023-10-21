@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: discovery
+  config:
+    import: configserver:http://localhost:7777
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:7777

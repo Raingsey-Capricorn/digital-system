@@ -1,0 +1,131 @@
+package com.digital.endpoints.domain.vo;
+
+import com.digital.endpoints.config.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.entities.UserEntity;
+import com.digital.endpoints.infrastructure.models.User;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.Collection;
+import java.util.List;
+
+/**
+ * Author  : pisethraringsey.suon
+ * Email   : pisethraingsey@dr-tech.com
+ * Date    : 6/10/23
+ * Project : com.digital.system
+ */
+@Getter
+@NoArgsConstructor
+@Accessors(chain = true)
+public class UserEntityVO implements User {
+
+    @Setter(AccessLevel.PRIVATE)
+    private UserEntity user = new UserEntity();
+
+    public UserEntityVO(UserEntity user) {
+        this.user = user;
+    }
+
+    /**
+     * @param role
+     * @return
+     */
+    public UserEntityVO setRole(AuthorizationRole role) {
+        this.user.setRole(role);
+        return this;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(user.getRole().name()));
+    }
+
+    /**
+     * @return
+     */
+    public String getFirstName() {
+        return user.getFirstName();
+    }
+
+    /**
+     * @param firstName
+     */
+    public UserEntityVO setFirstName(String firstName) {
+        this.user.setFirstName(firstName);
+        return this;
+    }
+
+    /**
+     * @return
+     */
+    public String getLastName() {
+        return user.getLastName();
+    }
+
+    /**
+     * @param lastName
+     */
+    public UserEntityVO setLastName(String lastName) {
+        this.user.setLastName(lastName);
+        return this;
+    }
+
+    /**
+     * @return
+     */
+    public String getEmail() {
+        return user.getEmail();
+    }
+
+    /**
+     * @param email
+     */
+    public UserEntityVO setEmail(String email) {
+        this.user.setEmail(email);
+        return this;
+    }
+
+    /**
+     * @param password
+     */
+    public UserEntityVO setPassword(String password) {
+        this.user.setPassword(password);
+        return this;
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+}

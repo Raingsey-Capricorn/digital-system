@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: endpoints
+  config:
+    import: configserver:http://localhost:7777
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:7777
+  security:
+    user:
+      name: system
+      roles: system
+      password: system!123
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+jwt:
+  secret:
+    key: NDEzRjQ0Mjg0NzJCNEI2MjUwNjU1MzY4NTY2RDU5NzAzMzczMzY3NjM5NzkyNDQyMjY0NTI5NDg0MDRENjM1MQ
