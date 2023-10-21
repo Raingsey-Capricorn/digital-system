@@ -37,26 +37,25 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
     /**
      * @param request : SignUpRequest
      * @return JwtAuthenticationResponse's instance
-     * @see SignUpRequest#SignUpRequest(String, String, String, String)
+     * @see SignUpRequest#SignUpRequest(String, String, String, String, AuthorizationRole)
      */
     @Override
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-        AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
         var user = new UserEntityVO()
                 .setFirstName(request.getFirstName())
                 .setLastName(request.getLastName())
                 .setEmail(request.getEmail())
                 .setPassword(passwordEncoder.encode(request.getPassword()))
-                .setRole(AuthorizationRole.USER);
+                .setRole(AuthorizationRole.valueOf(request.getRole().name()));
 
+        AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
         Optional.ofNullable(userService.save(user))
                 .ifPresent(entityVO -> response.set(JwtAuthenticationResponse
                         .builder()
                         .token(jwtService.generateToken(user))
                         .build()
                 ));
-        log.info("<<<<<<< User {} signed up successfully.", user.getEmail());
         return response.get();
     }
 
@@ -73,6 +72,7 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
                         request.getEmail(),
                         request.getPassword())
         );
+
         AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
         Optional.ofNullable(userService.userDetailsService()
                         .loadUserByUsername(request.getEmail()))
@@ -81,7 +81,6 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
                         .token(jwtService.generateToken(entityVO))
                         .build()
                 ));
-        log.info("<<<<<<< User {} signed in successfully.", request.getEmail());
         return response.get();
     }
 }

@@ -25,16 +25,15 @@ public class RepositoryUserService implements UserService {
     private final UserRepository repository;
 
     /**
-     * @param details
+     * @param details :
      */
     public UserEntityVO save(UserEntityVO details) {
 
-        UserEntityVO newUser = null;
         if (repository.findByEmail(details.getEmail()).isEmpty()) {
-            log.info("Saving new user : {}", details.getUser().getEmail());
-            newUser = new UserEntityVO(repository.save(details.getUser()));
-        }
-        return newUser;
+            log.info(">>>>>>> Saving new user : {}", details.getUser().getEmail());
+            return new UserEntityVO(repository.save(details.getUser()));
+        } else log.info("<<<<<<< User {} is existed, return the data from repository.", details.getEmail());
+        return details;
     }
 
     /**

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
  * Project : com.digital.system
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public abstract class AccessRole {
+public abstract class Authority {
     public static final String ROLE_PREFIX = "ROLE_";
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_USER = "USER";

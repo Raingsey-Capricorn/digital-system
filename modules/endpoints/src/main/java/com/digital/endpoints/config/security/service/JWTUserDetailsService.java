@@ -1,6 +1,6 @@
 package com.digital.endpoints.config.security.service;
 
-import com.digital.endpoints.config.constants.AccessRole;
+import com.digital.endpoints.config.constants.Authority;
 import com.digital.endpoints.config.security.JWTService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -80,7 +80,7 @@ public class JWTUserDetailsService implements JWTService {
                 .issuedAt(tokenCreatedAt)
                 .expiration(tokenValidity)
                 .encodePayload(true)
-                .issuer(AccessRole.ROLE_ADMIN)
+                .issuer(Authority.ROLE_ADMIN)
                 .subject(userDetails.getUsername())
                 .signWith(this.decodeHmacShaKey())
                 .compact();

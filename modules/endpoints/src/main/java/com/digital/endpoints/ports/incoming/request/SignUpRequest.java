@@ -1,9 +1,10 @@
 package com.digital.endpoints.ports.incoming.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.digital.endpoints.config.constants.AuthorizationRole;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.*;
+import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 
@@ -23,4 +24,6 @@ public class SignUpRequest implements Serializable {
     private String lastName;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private AuthorizationRole role;
 }

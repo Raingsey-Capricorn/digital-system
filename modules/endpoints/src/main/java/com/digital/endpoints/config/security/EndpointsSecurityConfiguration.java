@@ -1,5 +1,6 @@
 package com.digital.endpoints.config.security;
 
+import com.digital.endpoints.config.constants.Authority;
 import com.digital.endpoints.config.filter.JWTAuthenticationFilter;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 /**
  * Author  : pisethraringsey.suon
@@ -49,8 +49,7 @@ public class EndpointsSecurityConfiguration {
     public static final String AUTHORIZED_VIEW_URL = "/api/v1/view/**";
     public static final String ADMIN_AUTHORIZED_URL = "/api/v1/admin/**";
     public static final String AUTHORIZATION_URL = "/api/v1/auth/**";
-    public static final String SECURED_ENDPOINTS = "/api/**";
-    public static final String[] PUBLIC_URI = {"/css/**", "/**", "/home"};
+    public static final String SECURED_ENDPOINTS = "/api/v1/public/";
 
     private final UserService userService;
     private final JWTAuthenticationFilter filter;
@@ -62,20 +61,17 @@ public class EndpointsSecurityConfiguration {
      */
     @Bean
     public SecurityFilterChain chain(
-            final HttpSecurity httpSecurity,
-            final HandlerMappingIntrospector introspect
+            final HttpSecurity httpSecurity
     ) throws Exception {
 
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(matcherRegistry ->
-                                matcherRegistry
-//                                .requestMatchers(ADMIN_AUTHORIZED_URL)
-//                                .authenticated()
-                                        .requestMatchers(AUTHORIZATION_URL)
-                                        .permitAll()
-                                        .anyRequest()
-                                        .authenticated()
+                        matcherRegistry
+                                .requestMatchers(ADMIN_AUTHORIZED_URL).hasAuthority(Authority.ROLE_ADMIN)
+                                .requestMatchers(AUTHORIZATION_URL).permitAll()
+                                .anyRequest()
+                                .authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

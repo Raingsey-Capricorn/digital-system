@@ -1,10 +1,9 @@
 package com.digital.endpoints.ports.incoming.adapter.authorized.rest;
 
-import com.digital.endpoints.config.constants.AccessRole;
-import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
+@PreAuthorize(value = "hasAuthority('ADMIN')")
 @RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
 public class AuthorizedController {
 
     @GetMapping
-//    @RolesAllowed(AccessRole.ROLE_ADMIN)
     public ResponseEntity<?> defaultMessage() {
+
         log.info(">>>> Admin access - requested");
         return ResponseEntity.ok("ADMIN - access");
     }

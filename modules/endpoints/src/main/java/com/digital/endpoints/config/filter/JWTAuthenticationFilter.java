@@ -1,7 +1,9 @@
 package com.digital.endpoints.config.filter;
 
 import com.digital.endpoints.config.security.JWTService;
+import com.digital.endpoints.ports.incoming.request.SignUpRequest;
 import com.digital.endpoints.ports.outgoing.adapter.repository.RepositoryUserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +14,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -35,11 +36,11 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private final RepositoryUserService userService;
 
     /**
-     * @param request
-     * @param response
-     * @param filterChain
-     * @throws ServletException
-     * @throws IOException
+     * @param request     : request with credential
+     * @param response    : response for further process
+     * @param filterChain : spring filter chain
+     * @throws ServletException : exception related to Servlet
+     * @throws IOException      : Input-Output exception
      */
     @Override
     protected void doFilterInternal(
@@ -47,33 +48,34 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-
-        final String authHeader = request.getHeader("Authorization");
-        if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer")) {
-            filterChain.doFilter(request, response);
-            log.warn("Header doesn't have has key Authorization : {}", authHeader);
-            return;
-        }
-        try {
-            final var jwtBearerValue = authHeader.substring(7);
-            final var userEmail = jwtService.extractUserName(jwtBearerValue);
-            if (StringUtils.isNotEmpty(userEmail)
-                    && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
-                UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
-                if (jwtService.isTokenValid(jwtBearerValue, userDetails)) {
-                    final var context = SecurityContextHolder.createEmptyContext();
-                    final var authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails,
-                            userEmail,
-                            userDetails.getAuthorities()
-                    );
-                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    context.setAuthentication(authToken);
-                    SecurityContextHolder.setContext(context);
-                }
+        if (!request.getRequestURI().contains("sign-up")) {
+            final String authHeader = request.getHeader("Authorization");
+            if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer")) {
+                filterChain.doFilter(request, response);
+                log.warn("Authorization is missing from Headers, Bearer Token is required to access resource.");
+                return;
             }
-        } catch (Exception e) {
-            log.warn("Authorization Bearer has no info: {}", e.getMessage());
+            try {
+                final var jwtBearerValue = authHeader.substring(7);
+                final var userEmail = jwtService.extractUserName(jwtBearerValue);
+                if (StringUtils.isNotEmpty(userEmail)
+                        && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
+                    final var userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
+                    if (jwtService.isTokenValid(jwtBearerValue, userDetails)) {
+                        final var context = SecurityContextHolder.createEmptyContext();
+                        final var authToken = new UsernamePasswordAuthenticationToken(
+                                userDetails,
+                                userEmail,
+                                userDetails.getAuthorities()
+                        );
+                        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        context.setAuthentication(authToken);
+                        SecurityContextHolder.setContext(context);
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("Authorization Bearer has no token");
+            }
         }
         filterChain.doFilter(request, response);
     }

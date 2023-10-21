@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/public")
 public class MessageController implements MessageInterface {
 
     @Override
     @GetMapping("/message")
     public ResponseEntity<?> testMessage() {
+
         log.info(">>>> Simple message from endpoint.");
         return ResponseEntity.ok("Hello");
     }
