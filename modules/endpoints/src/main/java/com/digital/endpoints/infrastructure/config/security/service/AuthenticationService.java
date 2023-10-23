@@ -1,9 +1,9 @@
-package com.digital.endpoints.config.security.service;
+package com.digital.endpoints.infrastructure.config.security.service;
 
-import com.digital.endpoints.config.constants.AuthorizationRole;
-import com.digital.endpoints.config.security.AuthenticationServiceProvider;
-import com.digital.endpoints.config.security.JWTService;
 import com.digital.endpoints.domain.vo.UserEntityVO;
+import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.config.security.AuthenticationServiceProvider;
+import com.digital.endpoints.infrastructure.config.security.JWTService;
 import com.digital.endpoints.ports.incoming.request.SignInRequest;
 import com.digital.endpoints.ports.incoming.request.SignUpRequest;
 import com.digital.endpoints.ports.incoming.response.JwtAuthenticationResponse;
@@ -43,11 +43,11 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
         var user = new UserEntityVO()
-                .setFirstName(request.getFirstName())
-                .setLastName(request.getLastName())
-                .setEmail(request.getEmail())
-                .setPassword(passwordEncoder.encode(request.getPassword()))
-                .setRole(AuthorizationRole.valueOf(request.getRole().name()));
+                .setFirstName(request.firstName())
+                .setLastName(request.lastName())
+                .setEmail(request.email())
+                .setPassword(passwordEncoder.encode(request.password()))
+                .setRole(AuthorizationRole.valueOf(request.role().name()));
 
         AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
         Optional.ofNullable(userService.save(user))
@@ -69,13 +69,13 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword())
+                        request.email(),
+                        request.password())
         );
 
         AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
         Optional.ofNullable(userService.userDetailsService()
-                        .loadUserByUsername(request.getEmail()))
+                        .loadUserByUsername(request.email()))
                 .ifPresent(entityVO -> response.set(JwtAuthenticationResponse
                         .builder()
                         .token(jwtService.generateToken(entityVO))

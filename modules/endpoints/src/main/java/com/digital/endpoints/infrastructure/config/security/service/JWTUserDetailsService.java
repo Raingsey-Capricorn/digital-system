@@ -1,7 +1,7 @@
-package com.digital.endpoints.config.security.service;
+package com.digital.endpoints.infrastructure.config.security.service;
 
-import com.digital.endpoints.config.constants.Authority;
-import com.digital.endpoints.config.security.JWTService;
+import com.digital.endpoints.infrastructure.config.constants.Authority;
+import com.digital.endpoints.infrastructure.config.security.JWTService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

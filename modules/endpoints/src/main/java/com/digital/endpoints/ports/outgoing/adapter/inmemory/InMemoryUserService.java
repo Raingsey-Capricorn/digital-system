@@ -1,14 +1,12 @@
 package com.digital.endpoints.ports.outgoing.adapter.inmemory;
 
-import com.digital.endpoints.config.constants.AuthorizationRole;
-import com.digital.endpoints.config.security.service.JWTUserDetailsService;
 import com.digital.endpoints.domain.vo.UserEntityVO;
+import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

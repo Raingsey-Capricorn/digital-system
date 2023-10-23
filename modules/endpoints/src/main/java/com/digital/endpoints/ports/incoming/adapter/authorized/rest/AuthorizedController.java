@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@PreAuthorize(value = "hasAuthority('ADMIN')")
-@RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/admin")
+@PreAuthorize(value = "hasAuthority('ADMIN')")
 public class AuthorizedController {
 
     @GetMapping

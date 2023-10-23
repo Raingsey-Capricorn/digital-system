@@ -1,4 +1,4 @@
-package com.digital.endpoints.config.security;
+package com.digital.endpoints.infrastructure.config.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,4 +1,4 @@
-package com.digital.endpoints.config.constants;
+package com.digital.endpoints.infrastructure.config.constants;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

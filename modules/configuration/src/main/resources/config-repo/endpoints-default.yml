@@ -6,7 +6,6 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:9999/eureka/
-
 spring:
   security:
     user:

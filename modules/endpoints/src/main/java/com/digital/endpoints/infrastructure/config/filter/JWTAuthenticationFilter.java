@@ -1,9 +1,7 @@
-package com.digital.endpoints.config.filter;
+package com.digital.endpoints.infrastructure.config.filter;
 
-import com.digital.endpoints.config.security.JWTService;
-import com.digital.endpoints.ports.incoming.request.SignUpRequest;
+import com.digital.endpoints.infrastructure.config.security.JWTService;
 import com.digital.endpoints.ports.outgoing.adapter.repository.RepositoryUserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
