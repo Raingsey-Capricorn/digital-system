@@ -1,6 +1,6 @@
 package com.digital.endpoints.infrastructure.validation.annotations;
 
-import com.digital.endpoints.infrastructure.validation.FieldConstraintValidation;
+import com.digital.endpoints.infrastructure.validation.FieldConstraintValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -8,8 +8,7 @@ import java.lang.annotation.*;
 
 
 @Documented
-@Target({
-        ElementType.ANNOTATION_TYPE,
+@Target({ElementType.ANNOTATION_TYPE,
         ElementType.CONSTRUCTOR,
         ElementType.PARAMETER,
         ElementType.TYPE_USE,
@@ -17,10 +16,10 @@ import java.lang.annotation.*;
         ElementType.FIELD,
 })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FieldConstraintValidation.class)
-public @interface Validate {
+@Constraint(validatedBy = FieldConstraintValidator.class)
+public @interface StringValidate {
 
-    Validate.Type type();
+    FieldType type();
 
     Class<?>[] groups() default {};
 
@@ -28,9 +27,9 @@ public @interface Validate {
 
     String fieldName();
 
-    String message() default " is invalid";
+    String message() default "";
 
-    enum Type {
-        STRING, EMAIL, PASSWORD, ENUM;
+    enum FieldType {
+        STRING, EMAIL, PASSWORD
     }
 }

@@ -114,7 +114,7 @@ public class JWTUserDetailsService implements JWTService {
         final var readableKey = "plain_text_secert_key";
         var secretKey = new org.apache.commons.codec.digest.HmacUtils(algorithm, readableKey.getBytes(StandardCharsets.UTF_8)).hmacHex(data);
 
-        !!!save the secretKey to file for reading back to check JWT key-has comparison
+        !!!save the secretKey to file (application.yml) or secretKey file for reading back to check JWT key-has comparison
         */
 
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSigningKey));
