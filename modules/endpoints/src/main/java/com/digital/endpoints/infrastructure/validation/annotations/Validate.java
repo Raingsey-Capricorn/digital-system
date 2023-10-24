@@ -26,11 +26,11 @@ public @interface Validate {
 
     Class<? extends Payload>[] payload() default {};
 
-    String fieldName() default " is invalid";
+    String fieldName();
 
     String message() default " is invalid";
 
     enum Type {
-        NAME, EMAIL, PASSWORD;
+        STRING, EMAIL, PASSWORD, ENUM;
     }
 }

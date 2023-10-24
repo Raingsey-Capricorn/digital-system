@@ -30,7 +30,10 @@ public class FieldConstraintValidation implements ConstraintValidator<Validate, 
 
         switch (constraintAnnotation.type()) {
             case PASSWORD -> {
-
+                return StringValidator.isContainingSpecialSymbol(s) &&
+                        StringValidator.isContainReservedWord(s) &&
+                        StringValidator.isContainingEmoji(s) &&
+                        StringValidator.isEmpty(s);
             }
             case EMAIL -> {
                 return StringValidator.isContainingSpecialSymbol(s) &&
@@ -39,13 +42,20 @@ public class FieldConstraintValidation implements ConstraintValidator<Validate, 
                         StringValidator.isValidEmailPattern(s) &&
                         StringValidator.isEmpty(s);
             }
-            case NAME -> {
+            case STRING -> {
 
                 return StringValidator.isContainingSpecialSymbol(s) &&
                         StringValidator.isContainReservedWord(s) &&
                         StringValidator.isContainingEmoji(s) &&
                         StringValidator.isEmpty(s) &&
                         StringValidator.isLongerThan(s, 16);
+            }
+            case ENUM -> {
+                return StringValidator.isContainingSpecialSymbol(s) &&
+//                        AuthorizationRole.valueOf(s) &&
+                        StringValidator.isContainReservedWord(s) &&
+                        StringValidator.isContainingEmoji(s) &&
+                        StringValidator.isEmpty(s);
             }
         }
         return true;

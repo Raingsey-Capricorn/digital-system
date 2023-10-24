@@ -1,7 +1,7 @@
 package com.digital.endpoints.ports.outgoing.adapter.inmemory;
 
 import com.digital.endpoints.domain.vo.UserEntityVO;
-import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

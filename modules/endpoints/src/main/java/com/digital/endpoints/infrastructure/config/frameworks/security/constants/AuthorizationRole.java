@@ -1,4 +1,4 @@
-package com.digital.endpoints.infrastructure.config.constants;
+package com.digital.endpoints.infrastructure.config.frameworks.security.constants;
 
 import java.util.Arrays;
 import java.util.List;

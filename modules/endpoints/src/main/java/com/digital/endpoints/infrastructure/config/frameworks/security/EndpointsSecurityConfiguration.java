@@ -1,7 +1,7 @@
-package com.digital.endpoints.infrastructure.config.security;
+package com.digital.endpoints.infrastructure.config.frameworks.security;
 
-import com.digital.endpoints.infrastructure.config.constants.Authority;
-import com.digital.endpoints.infrastructure.config.filter.JWTAuthenticationFilter;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.Authority;
+import com.digital.endpoints.infrastructure.config.frameworks.security.filter.JWTAuthenticationFilter;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

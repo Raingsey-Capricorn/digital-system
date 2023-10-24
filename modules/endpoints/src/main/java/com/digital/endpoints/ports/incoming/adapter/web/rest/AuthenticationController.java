@@ -1,6 +1,6 @@
 package com.digital.endpoints.ports.incoming.adapter.web.rest;
 
-import com.digital.endpoints.infrastructure.config.security.service.AuthenticationService;
+import com.digital.endpoints.infrastructure.config.frameworks.security.service.AuthenticationService;
 import com.digital.endpoints.ports.incoming.request.SignInRequest;
 import com.digital.endpoints.ports.incoming.request.SignUpRequest;
 import com.digital.endpoints.ports.incoming.response.JwtAuthenticationResponse;

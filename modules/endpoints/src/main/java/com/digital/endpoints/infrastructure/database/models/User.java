@@ -1,4 +1,4 @@
-package com.digital.endpoints.infrastructure.models;
+package com.digital.endpoints.infrastructure.database.models;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

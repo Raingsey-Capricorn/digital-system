@@ -1,5 +1,6 @@
 package com.digital.endpoints.ports.incoming.request;
 
+import com.digital.endpoints.infrastructure.validation.annotations.Validate;
 import lombok.Builder;
 
 /**
@@ -10,6 +11,8 @@ import lombok.Builder;
  */
 @Builder
 public record SignInRequest(
+        @Validate(type = Validate.Type.STRING, fieldName = "Email")
         String email,
+        @Validate(type = Validate.Type.PASSWORD, fieldName = "Password")
         String password) {
 }

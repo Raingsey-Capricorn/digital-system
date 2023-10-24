@@ -1,4 +1,4 @@
-package com.digital.endpoints.infrastructure.config.security;
+package com.digital.endpoints.infrastructure.config.frameworks.security;
 
 import com.digital.endpoints.ports.incoming.request.SignInRequest;
 import com.digital.endpoints.ports.incoming.request.SignUpRequest;
