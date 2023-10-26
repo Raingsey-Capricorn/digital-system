@@ -1,7 +1,7 @@
-package com.digital.endpoints.infrastructure.validation;
+package com.digital.endpoints.infrastructure.web.validation;
 
 import com.digital.endpoints.infrastructure.utilities.StringValidatorUtil;
-import com.digital.endpoints.infrastructure.validation.annotations.StringValidate;
+import com.digital.endpoints.infrastructure.web.validation.annotations.StringValidate;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;

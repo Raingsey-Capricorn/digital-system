@@ -3,6 +3,9 @@ server:
 eureka:
   instance:
     hostname: localhost
+    homePageUrl: https://${eureka.instance.hostname}/
+    statusPageUrl: https://${eureka.instance.hostname}/info
+    healthCheckUrl: https://${eureka.instance.hostname}/health
   client:
     fetch-registry: false
     register-with-eureka: false

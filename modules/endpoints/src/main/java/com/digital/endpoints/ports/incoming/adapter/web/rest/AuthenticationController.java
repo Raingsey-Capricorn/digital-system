@@ -1,9 +1,9 @@
 package com.digital.endpoints.ports.incoming.adapter.web.rest;
 
 import com.digital.endpoints.infrastructure.config.frameworks.security.service.AuthenticationService;
-import com.digital.endpoints.ports.incoming.request.SignInRequest;
-import com.digital.endpoints.ports.incoming.request.SignUpRequest;
-import com.digital.endpoints.ports.incoming.response.JwtAuthenticationResponse;
+import com.digital.endpoints.infrastructure.web.request.SignInRequest;
+import com.digital.endpoints.infrastructure.web.request.SignUpRequest;
+import com.digital.endpoints.infrastructure.web.response.JwtAuthenticationResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

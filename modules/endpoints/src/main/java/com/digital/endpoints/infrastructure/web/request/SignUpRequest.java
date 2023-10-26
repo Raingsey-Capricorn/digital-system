@@ -1,8 +1,8 @@
-package com.digital.endpoints.ports.incoming.request;
+package com.digital.endpoints.infrastructure.web.request;
 
 import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
-import com.digital.endpoints.infrastructure.validation.annotations.EnumValidate;
-import com.digital.endpoints.infrastructure.validation.annotations.StringValidate;
+import com.digital.endpoints.infrastructure.web.validation.annotations.EnumValidate;
+import com.digital.endpoints.infrastructure.web.validation.annotations.StringValidate;
 import lombok.Builder;
 
 import java.io.Serializable;

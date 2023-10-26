@@ -1,6 +1,6 @@
-package com.digital.endpoints.infrastructure.validation.annotations;
+package com.digital.endpoints.infrastructure.web.validation.annotations;
 
-import com.digital.endpoints.infrastructure.validation.EnumConstraintValidator;
+import com.digital.endpoints.infrastructure.web.validation.EnumConstraintValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
