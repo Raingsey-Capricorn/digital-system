@@ -1,6 +1,6 @@
-package com.digital.endpoints.infrastructure.repositories;
+package com.digital.endpoints.infrastructure.database.repositories;
 
-import com.digital.endpoints.infrastructure.entities.UserEntity;
+import com.digital.endpoints.infrastructure.database.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

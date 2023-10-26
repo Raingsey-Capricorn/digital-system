@@ -1,8 +1,8 @@
 package com.digital.endpoints.domain.vo;
 
-import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
-import com.digital.endpoints.infrastructure.entities.UserEntity;
-import com.digital.endpoints.infrastructure.models.User;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.database.entities.UserEntity;
+import com.digital.endpoints.infrastructure.database.models.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

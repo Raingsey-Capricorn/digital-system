@@ -1,6 +1,6 @@
-package com.digital.endpoints.infrastructure.config.filter;
+package com.digital.endpoints.infrastructure.config.frameworks.security.filter;
 
-import com.digital.endpoints.infrastructure.config.security.JWTService;
+import com.digital.endpoints.infrastructure.config.frameworks.security.JWTService;
 import com.digital.endpoints.ports.outgoing.adapter.repository.RepositoryUserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

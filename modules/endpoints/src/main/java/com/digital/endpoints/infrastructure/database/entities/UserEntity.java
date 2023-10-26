@@ -1,6 +1,6 @@
-package com.digital.endpoints.infrastructure.entities;
+package com.digital.endpoints.infrastructure.database.entities;
 
-import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package com.digital.endpoints.ports.outgoing.adapter.inmemory;
 
 import com.digital.endpoints.domain.vo.UserEntityVO;
-import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -57,16 +57,16 @@ public class InMemoryUserService implements UserService {
                         password,
                         AuthorizationRole.SYSTEM),
                 buildUserDetails(
-                        "admin@sample.com",
-                        "admin",
-                        "admin-Sample",
-                        "admin@123",
+                        "admin@digitalsystem.com",
+                        "Admin_lastName",
+                        "Admin_firstName",
+                        "admin@123ADMIN",
                         AuthorizationRole.ADMIN),
                 buildUserDetails(
-                        "user@sample.com",
-                        "user",
-                        "User-Sample",
-                        "user@Password",
+                        "user@digitalsystem.com",
+                        "User_lastName",
+                        "User_firstName",
+                        "user@123USER",
                         AuthorizationRole.USER),
                 buildUserDetails(
                         "anonymous@sample.com",

@@ -1,10 +1,11 @@
 package com.digital.endpoints.ports.incoming.request;
 
-import com.digital.endpoints.infrastructure.config.constants.AuthorizationRole;
-import com.digital.endpoints.infrastructure.validation.annotations.Validate;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
+import com.digital.endpoints.infrastructure.validation.annotations.EnumValidate;
+import com.digital.endpoints.infrastructure.validation.annotations.StringValidate;
 import lombok.Builder;
+
+import java.io.Serializable;
 
 /**
  * Author  : pisethraringsey.suon
@@ -14,15 +15,14 @@ import lombok.Builder;
  */
 @Builder
 public record SignUpRequest(
-        @Validate(type = Validate.Type.NAME, fieldName = "First Name")
+        @StringValidate(type = StringValidate.FieldType.STRING, fieldName = "First Name")
         String firstName,
-        @Validate(type = Validate.Type.NAME, fieldName = "Last Name")
+        @StringValidate(type = StringValidate.FieldType.STRING, fieldName = "Last Name")
         String lastName,
-        @Validate(type = Validate.Type.NAME, fieldName = "Email")
+        @StringValidate(type = StringValidate.FieldType.EMAIL, fieldName = "Email")
         String email,
-        @Validate(type = Validate.Type.PASSWORD, fieldName = "Password")
+        @StringValidate(type = StringValidate.FieldType.PASSWORD, fieldName = "Password")
         String password,
-        @Enumerated(EnumType.STRING)
-        AuthorizationRole role
-) {
+        @EnumValidate(fieldName = "Password")
+        AuthorizationRole role) implements Serializable {
 }

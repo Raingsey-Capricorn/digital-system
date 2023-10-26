@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class StringValidator {
+public class StringValidatorUtil {
 
     /**
      * @param value
@@ -32,7 +32,7 @@ public class StringValidator {
      * @return
      */
     @SneakyThrows
-    public static boolean isContainReservedWord(String value) {
+    public static boolean isContainingReservedWord(String value) {
 
         final JSONLoaderUtil.Keyword keyword = new ObjectMapper()
                 .readValue(JSONLoaderUtil.Keyword.class.getResourceAsStream("/json/reserve-words.json")
@@ -51,7 +51,7 @@ public class StringValidator {
                 .mapToObj(c -> (char) c)
                 .toList()
                 .stream()
-                .anyMatch(StringValidator::isEmojiCharacter);
+                .anyMatch(StringValidatorUtil::isEmojiCharacter);
     }
 
     /**
@@ -70,8 +70,8 @@ public class StringValidator {
      * @param text
      * @return true - for valid email, false - for none email pattern
      */
-    public static boolean isValidEmailPattern(String text) {
-        return !Pattern.compile("^(.+)@(\\\\S+)$").matcher(text).find();
+    public static boolean isInValidEmailPattern(String text) {
+        return Objects.isNull(text) || !Pattern.compile("^(.+)@(\\S+)$").matcher(text).find();
     }
 
     /**

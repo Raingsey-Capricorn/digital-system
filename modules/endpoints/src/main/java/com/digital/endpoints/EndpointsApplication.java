@@ -14,6 +14,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * <a href="https://www.kindsonthegenius.com/introduction-to-spring-security-a-practical-tutorial/">Original Spring security - InMemory repository demo</a>
  * <a href="https://docs.spring.io/spring-security/reference/5.8/migration/servlet/config.html">Configuration Migrations 5.8.8</a>
  * <a href="https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html">New implementation for SS v6.1.5</a>
+ * <a href="https://bootify.io/spring-security/rest-api-spring-security-with-jwt.html">Securing a REST API with Spring Security and JWT</a>
+ * <a href="https://salithachathuranga94.medium.com/validation-and-exception-handling-in-spring-boot-51597b580ffd">Validation and Exception Handling in Spring Boot</a>
  */
 @EnableDiscoveryClient
 @SpringBootApplication

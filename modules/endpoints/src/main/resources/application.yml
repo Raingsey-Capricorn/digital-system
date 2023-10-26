@@ -18,4 +18,3 @@ spring:
 jwt:
   secret:
     key: NDEzRjQ0Mjg0NzJCNEI2MjUwNjU1MzY4NTY2RDU5NzAzMzczMzY3NjM5NzkyNDQyMjY0NTI5NDg0MDRENjM1MQ
-

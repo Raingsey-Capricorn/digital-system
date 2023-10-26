@@ -1,6 +1,9 @@
 package com.digital.endpoints.ports.incoming.request;
 
+import com.digital.endpoints.infrastructure.validation.annotations.StringValidate;
 import lombok.Builder;
+
+import java.io.Serializable;
 
 /**
  * Author  : pisethraringsey.suon
@@ -10,6 +13,8 @@ import lombok.Builder;
  */
 @Builder
 public record SignInRequest(
+        @StringValidate(type = StringValidate.FieldType.EMAIL, fieldName = "Email")
         String email,
-        String password) {
+        @StringValidate(type = StringValidate.FieldType.PASSWORD, fieldName = "Password")
+        String password) implements Serializable {
 }

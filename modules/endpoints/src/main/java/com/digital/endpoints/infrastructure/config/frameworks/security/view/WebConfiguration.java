@@ -1,4 +1,4 @@
-package com.digital.endpoints.infrastructure.config.view;
+package com.digital.endpoints.infrastructure.config.frameworks.security.view;
 
 /**
  * Author  : pisethraringsey.suon

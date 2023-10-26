@@ -1,7 +1,7 @@
 package com.digital.endpoints.ports.outgoing.adapter.repository;
 
 import com.digital.endpoints.domain.vo.UserEntityVO;
-import com.digital.endpoints.infrastructure.repositories.UserRepository;
+import com.digital.endpoints.infrastructure.database.repositories.UserRepository;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
