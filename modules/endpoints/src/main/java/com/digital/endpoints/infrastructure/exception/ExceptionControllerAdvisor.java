@@ -25,21 +25,21 @@ import java.util.HashMap;
  */
 @Slf4j
 @RestControllerAdvice
-public class ControllerExceptionAdvisor {
+public class ExceptionControllerAdvisor {
 
-    final HashMap<String, String> errorResponseMap = new HashMap<>();
     /**
-     * @param argumentException
+     * @param notValidException
      * @param request
      * @return
      */
     @SneakyThrows
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleInvalidMethodArguments(
-            final MethodArgumentNotValidException argumentException,
+            final MethodArgumentNotValidException notValidException,
             final WebRequest request) {
 
-        argumentException
+        final var errorResponseMap = new HashMap<String, String>();
+        notValidException
                 .getFieldErrors()
                 .forEach(objectError -> errorResponseMap.put(
                         objectError.getField(),
@@ -47,9 +47,9 @@ public class ControllerExceptionAdvisor {
                 );
 
         final var uri = new URI(((ServletWebRequest) request).getRequest().getRequestURI());
-        final var errorBody = argumentException.getBody();
+        final var errorBody = notValidException.getBody();
         errorBody.setProperty("details", errorResponseMap);
-        errorBody.setTitle(argumentException.getMessage().substring(0, 10));
+        errorBody.setTitle(notValidException.getMessage().substring(0, 10));
         errorBody.setStatus(HttpStatus.BAD_REQUEST.value());
         errorBody.setStatus(HttpStatus.BAD_REQUEST);
         errorBody.setInstance(uri);
@@ -68,6 +68,7 @@ public class ControllerExceptionAdvisor {
             final HttpMessageNotReadableException notReadableException,
             final WebRequest request) {
 
+        final var errorResponseMap = new HashMap<String, String>();
         final var details = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         final var uri = new URI(((ServletWebRequest) request).getRequest().getRequestURI());
         final var exMessage = notReadableException.getMostSpecificCause().getMessage();

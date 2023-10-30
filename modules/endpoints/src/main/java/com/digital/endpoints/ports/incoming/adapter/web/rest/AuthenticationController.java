@@ -31,13 +31,13 @@ public class AuthenticationController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody @Valid SignUpRequest request) {
-        log.info(">>>>>>> Request signing up a new user: {}", request.email());
+        log.info(">>>> Request signing up a new user: {}", request.email());
         return ResponseEntity.ok(authenticationService.signUp(request));
     }
 
     @PostMapping("/sign-in")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody @Valid SignInRequest request) {
-        log.info(">>>>>>> Request signing in existing user: {}", request.email());
+        log.info(">>>> Request signing in existing user: {}", request.email());
         return ResponseEntity.ok(authenticationService.signIn(request));
     }
 }

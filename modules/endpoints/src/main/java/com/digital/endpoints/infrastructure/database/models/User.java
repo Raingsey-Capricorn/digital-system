@@ -8,9 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * Date    : 6/10/23
  * Project : com.digital.system
  */
-
 public interface User extends UserDetails {
-
 
     @Override
     default boolean isAccountNonExpired() {

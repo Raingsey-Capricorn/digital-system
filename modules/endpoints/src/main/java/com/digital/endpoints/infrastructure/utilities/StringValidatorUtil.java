@@ -62,7 +62,7 @@ public class StringValidatorUtil {
         return !Pattern.compile("^([a-zA-Z0-9.\\s_-])*$").matcher(text).find();
     }
 
-    public static boolean isLongerThan(String text, int lengthAllowance) {
+    public static boolean isLongerThan(int lengthAllowance, String text) {
         return text.length() > lengthAllowance;
     }
 

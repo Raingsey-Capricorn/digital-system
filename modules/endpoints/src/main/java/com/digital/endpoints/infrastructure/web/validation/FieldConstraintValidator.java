@@ -55,7 +55,7 @@ public class FieldConstraintValidator implements ConstraintValidator<StringValid
                     return reApplyViolationMessage(context, MESSAGE_RESERVED_WORD);
                 } else if (StringValidatorUtil.isContainingSpecialSymbol(value)) {
                     return reApplyViolationMessage(context, MESSAGE_SPECIAL_CHARACTER);
-                } else if (StringValidatorUtil.isLongerThan(value, limit)) {
+                } else if (StringValidatorUtil.isLongerThan(limit, value)) {
                     return reApplyViolationMessage(context, String.format(MESSAGE_LONGER_THAN, limit));
                 } else return true;
             }

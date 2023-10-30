@@ -8,9 +8,9 @@ spring:
   cloud:
     config:
       uri: http://localhost:7777
-#    gateway:
-#      routes:
-#        - id: endpoints
-#          uri: http://localhost:10000
-#          predicates:
-#            - Path=/api/v1/**
+    gateway:
+      routes:
+        - id: endpoints
+          uri: http://localhost:10000
+          predicates:
+            - Path=/api/v1/**

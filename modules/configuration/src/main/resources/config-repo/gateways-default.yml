@@ -8,9 +8,9 @@ eureka:
       defaultZone: http://localhost:9999/eureka/
 spring:
   cloud:
-    gateway:
-      routes:
-        - id: endpoints
-          uri: http://localhost:10000
-          predicates:
-            - Path=/api/v1/**
+#    gateway:
+#      routes:
+#        - id: endpoints
+#          uri: http://localhost:10000
+#          predicates:
+#            - Path=/api/v1/**

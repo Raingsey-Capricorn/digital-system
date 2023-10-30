@@ -1,0 +1,31 @@
+# https://medium.com/@vishal.sharma./run-postgresql-and-pgadmin-using-docker-compose-34120618bcf9
+# https://geshan.com.np/blog/2021/12/docker-postgres/
+version: "3.8"
+services:
+  Postgre-local:
+    image: postgres:16.0
+    restart: always
+    container_name: local_pgdb
+    ports:
+      - 5432:5432
+    volumes:
+      - local-pgdata:/var/lib/postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin@123.456
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - 8888:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@sample.com
+      PGADMIN_DEFAULT_PASSWORD: admin@123.456
+
+volumes:
+  local-pgdata:
+  pgadmin-data:
