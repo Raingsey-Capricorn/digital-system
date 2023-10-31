@@ -1,1 +1,9 @@
 https://konghq.com/resources/videos/installing-kongs-api-gateway-with-docker
+Official demo https://konghq.com/resources/videos/installing-kongs-api-gateway-with-docker
+Error for Apple Silicon solution
+https://medium.com/@email.bajaj/docker-image-platform-compatibility-issue-with-mac-silicon-processors-m1-m2-ee2d5ea3ff0e
+then solve using this platform specific option
+platform: "linux/amd64"
+
+Simple konga compose.yml
+https://github.com/hunter-ji/kong-konga-docker-compose/blob/master/docker-compose.yml
