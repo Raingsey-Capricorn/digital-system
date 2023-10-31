@@ -17,6 +17,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * <a href="https://bootify.io/spring-security/rest-api-spring-security-with-jwt.html">Securing a REST API with Spring Security and JWT</a>
  * <a href="https://salithachathuranga94.medium.com/validation-and-exception-handling-in-spring-boot-51597b580ffd">Validation and Exception Handling in Spring Boot</a>
  * <a href="https://www.geeksforgeeks.org/best-practices-to-secure-microservices-with-spring-security/">Best Practices to Secure Microservices with Spring Security</a>
+ * <p>
+ * mvn --settings ../../settings.xml  verify -DskipTests=true
  */
 @EnableDiscoveryClient
 @SpringBootApplication

@@ -46,7 +46,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        if (!request.getRequestURI().contains("sign-up")) {
+        if (!request.getRequestURI().contains("sign-up") && !request.getRequestURI().contains("swagger")) {
             final String authHeader = request.getHeader("Authorization");
             if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer")) {
                 filterChain.doFilter(request, response);

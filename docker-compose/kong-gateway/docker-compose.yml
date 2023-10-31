@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
   kong-bootstrap:
-    image: kong:3.1.1
+    image: kong:3.4.2
     hostname: kong-bootstrap
     container_name: kong-bootstrap
     depends_on:
