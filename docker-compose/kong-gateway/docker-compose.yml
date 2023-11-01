@@ -2,9 +2,10 @@ version: "3.9"
 services:
   #######################################
   # Postgres: Kong Database
+  # ! Postgres 11.16 is the latest version that supported by Konga v0.14.9
   #######################################
   postgres:
-    image: postgres:16.0
+    image: postgres:11.16
     restart: always
     hostname: kong-database
     environment:
@@ -20,9 +21,9 @@ services:
     image: kong:3.4.2
     restart: on-failure
     hostname: kong-bootstrap
+    container_name: kong-bootstrap
     networks:
       - default
-    container_name: kong-bootstrap
     depends_on:
       - postgres
     environment:
@@ -71,19 +72,21 @@ services:
   # Konga database migration
   #######################################
   konga-bootstrap:
-    image: pantsel/konga:0.6.3
-    command: "-c prepare -a postgres -u postgresql://kong:kong@kong-database:5432/kong"
+    image: pantsel/konga:0.14.9
+    container_name: konga-bootstrap
+    restart: on-failure
     networks:
       - default
-    restart: on-failure
     depends_on:
       - kong-bootstrap
     platform: "linux/amd64"
+    command: "-c prepare -a postgres -u postgresql://kong:kong@kong-database:5432/kong"
   #######################################
   # Konga: GUI of KONG Admin API
   #######################################
   konga:
-    image: pantsel/konga:0.6.3
+    image: pantsel/konga:0.14.9
+    container_name: konga
     restart: always
     networks:
       - default

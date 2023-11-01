@@ -50,10 +50,10 @@ public class SecurityConfiguration {
     public static final String ADMIN_AUTHORIZED_URL = "/api/v1/admin/**";
     public static final String AUTHORIZATION_URL = "/api/v1/auth/**";
     public static final String HEALTH_CHECK = "/health";
+    private static final String[] OPEN_APIS_V3 = {"/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"};
 
     private final UserService userService;
     private final JWTAuthenticationFilter filter;
-    private static final String[] OPEN_APIS_V3 = {"/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"};
 
     /**
      * @param httpSecurity

@@ -7,3 +7,6 @@ platform: "linux/amd64"
 
 Simple konga compose.yml
 https://github.com/hunter-ji/kong-konga-docker-compose/blob/master/docker-compose.yml
+
+pantsel/konga Kong Admin panel
+https://ainize.ai/pantsel/konga
