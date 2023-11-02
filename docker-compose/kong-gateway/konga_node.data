@@ -1,0 +1,8 @@
+module.exports = [
+  {
+    "name": "kong-admin",
+    "type": "key_auth",
+    "kong_admin_url": "http://localhost:8444",
+    "health_checks": false
+  }
+]
