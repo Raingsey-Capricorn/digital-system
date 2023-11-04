@@ -99,7 +99,7 @@
     </dependencies>
 
     <build>
-        <finalName>Digital-System-Endpoints</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -132,7 +132,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
@@ -150,14 +150,14 @@
                         <argument>generate</argument>
                         <argument>config</argument>
                         <argument>target/openapi.json</argument>
-                        <argument>--output</argument>
+                        <argument>&#45;&#45;output</argument>
                         <argument>../kong/kong.yml</argument>
-                        <argument>--type</argument>
+                        <argument>&#45;&#45;type</argument>
                         <argument>declarative</argument>
-                        <argument>--verbose</argument>
+                        <argument>&#45;&#45;verbose</argument>
                     </arguments>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
