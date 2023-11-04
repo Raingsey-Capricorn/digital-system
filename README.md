@@ -6,6 +6,8 @@ https://stackoverflow.com/questions/24537340/docker-adding-a-file-from-a-parent-
 
 docker build --build-arg --tag=dig-sys-config:latest -f deploy/Dockerfile .
 
+https://medium.com/jinternals/build-docker-images-with-and-maven-901ec0d9de58
+
 running maven with specified setting.xml</br>
 mvn -s settings.xml clean package
 
