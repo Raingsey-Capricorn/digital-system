@@ -5,44 +5,15 @@ spring:
   application:
     name: endpoints
   config:
-    import: configserver:http://localhost:7777
+    import: configserver:http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:7777}
   profiles:
     active: default
   cloud:
     config:
-      uri: http://localhost:7777
+      uri: http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:7777}
   main:
     allow-bean-definition-overriding: true
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-jwt:
-  secret:
-    key: NDEzRjQ0Mjg0NzJCNEI2MjUwNjU1MzY4NTY2RDU5NzAzMzczMzY3NjM5NzkyNDQyMjY0NTI5NDg0MDRENjM1MQ
-
-openapi:
-  service:
-    title: price-service doc #title that you will want to display in the swagger ui
-    version: 1.0.0
-    url: http://localhost:10000 #api gateway url
-springdoc:
-  api-docs:
-    enabled: true
-    path: /v3/api-docs #these urls will used to load the swagger ui of this service by the api gateway
-  swagger-ui:
-    enabled: true
-    #  http://localhost:10000/swagger-ui/index.html
-    path: /swagger-ui.html
-    config-url: /v3/api-docs/swagger-config
-    #    Selection dropdown definitions
-    urls:
-      - url: /v3/api-docs
-        name: API Gateway Service
-        display-name: API Gateway Service
-#      - url: /product-service/v3/api-docs
-#        name: Product Service
-#        display-name: Product Service
-#      - url: /price-service/v3/api-docs
-#        name: Price Service
-#        display-name: Price Service
