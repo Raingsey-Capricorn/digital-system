@@ -17,3 +17,29 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+
+openapi:
+  service:
+    title: price-service doc #title that you will want to display in the swagger ui
+    version: 1.0.0
+    url: http://${ENDPOINTS_PORT:localhost}:${ENDPOINTS_PORT:10000} #api gateway url
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs #these urls will used to load the swagger ui of this service by the api gateway
+  swagger-ui:
+    enabled: true
+    #  http://localhost:10000/swagger-ui/index.html
+    path: /swagger-ui
+    config-url: /v3/api-docs/swagger-config
+    #    Selection dropdown definitions
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+        display-name: API Gateway Service
+#      - url: /product-service/v3/api-docs
+#        name: Product Service
+#        display-name: Product Service
+#      - url: /price-service/v3/api-docs
+#        name: Price Service
+#        display-name: Price Service

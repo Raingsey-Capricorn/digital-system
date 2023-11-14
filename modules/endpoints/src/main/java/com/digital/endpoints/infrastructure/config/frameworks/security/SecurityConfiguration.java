@@ -13,6 +13,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -73,14 +74,27 @@ public class SecurityConfiguration {
                                 .requestMatchers(ADMIN_AUTHORIZED_URL).hasAuthority(Authority.ROLE_ADMIN)
                                 .requestMatchers(AUTHORIZATION_URL).permitAll()
                                 .requestMatchers(HEALTH_CHECK).permitAll()
-                                .requestMatchers(OPEN_APIS_V3).permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        ;
         return httpSecurity.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer configureResources() {
+        return web -> web.ignoring()
+                .requestMatchers(
+                        "configuration/**",
+                        "/api/auth/**",
+                        "/v3/api-docs/**",
+                        "/swagger*/**",
+                        "/swagger-ui/**",
+                        "/webjars/**"
+                );
     }
 
     @Bean
