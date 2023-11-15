@@ -22,7 +22,7 @@ openapi:
   service:
     title: price-service doc #title that you will want to display in the swagger ui
     version: 1.0.0
-    url: http://${ENDPOINTS_PORT:localhost}:${ENDPOINTS_PORT:10000} #api gateway url
+    url: http://${ENDPOINTS_HOST:localhost}:${ENDPOINTS_PORT:10000} #api gateway url
 springdoc:
   api-docs:
     enabled: true
