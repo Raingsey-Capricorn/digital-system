@@ -2,6 +2,7 @@ package com.digital.endpoints.infrastructure.exception;
 
 import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import com.digital.endpoints.infrastructure.utilities.RegExpressionUtil;
+import io.jsonwebtoken.security.SignatureException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,23 @@ import java.util.HashMap;
 @Slf4j
 @RestControllerAdvice
 public class ExceptionControllerAdvisor {
+
+    @SneakyThrows
+    @ExceptionHandler(value = SignatureException.class)
+    public ResponseEntity<Object> handleJWTSignatureException(
+            final WebRequest request) {
+
+        final var errorResponseMap = new HashMap<String, String>();
+        final var uri = new URI(((ServletWebRequest) request).getRequest().getRequestURI());
+        final var errorBody = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        errorBody.setProperty("details", errorResponseMap);
+        errorBody.setTitle(SignatureException.class.getSimpleName());
+        errorBody.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorBody.setStatus(HttpStatus.BAD_REQUEST);
+        errorBody.setInstance(uri);
+        errorBody.setType(uri);
+        return ResponseEntity.badRequest().body(errorBody);
+    }
 
     /**
      * @param notValidException
@@ -77,13 +95,6 @@ public class ExceptionControllerAdvisor {
         if (Class.forName(regOfClass).isAssignableFrom(AuthorizationRole.class)) {
             final var regOfRequestField = RegExpressionUtil.getValue("(\\[\").*(\"\\])", exMessage)
                     .replace("[\"", "").replace("\"]", "");
-            /*
-            final var regOfRequestValue = RegExpressionUtil.getValue("(from.*).\"", exMessage);
-            final var regOfDescription = RegExpressionUtil.getValue("(:.not.*)", exMessage);
-            final var message = String.format("Role value %s: accept only %s",
-                    regOfRequestValue.replaceAll("([\",from,String])", "").trim(),
-                    regOfDescription.replace(":", "").trim());
-                    */
             errorResponseMap.put(regOfRequestField, "Is invalid");
             details.setTitle("Invalid request content type");
             details.setDetail("Authority value : accept only {ADMIN,USER,SYSTEM,ANONYMOUS}");

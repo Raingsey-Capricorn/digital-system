@@ -29,7 +29,3 @@ spring:
     username: root
     password: QWEqwe123@
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-jwt:
-  secret:
-    key: NDEzRjQ0Mjg0NzJCNEI2MjUwNjU1MzY4NTY2RDU5NzAzMzczMzY3NjM5NzkyNDQyMjY0NTI5NDg0MDRENjM1MQ

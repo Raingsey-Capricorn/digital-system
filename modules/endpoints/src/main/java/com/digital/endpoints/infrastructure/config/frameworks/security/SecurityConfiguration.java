@@ -51,7 +51,14 @@ public class SecurityConfiguration {
     public static final String ADMIN_AUTHORIZED_URL = "/api/v1/admin/**";
     public static final String AUTHORIZATION_URL = "/api/v1/auth/**";
     public static final String HEALTH_CHECK = "/health";
-    private static final String[] OPEN_APIS_V3 = {"/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"};
+    private static final String[] OPEN_APIS_V3 = {
+            "configuration/**",
+            "/api/auth/**",
+            "/v3/api-docs/**",
+            "/swagger*/**",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
 
     private final UserService userService;
     private final JWTAuthenticationFilter filter;
@@ -74,6 +81,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(ADMIN_AUTHORIZED_URL).hasAuthority(Authority.ROLE_ADMIN)
                                 .requestMatchers(AUTHORIZATION_URL).permitAll()
                                 .requestMatchers(HEALTH_CHECK).permitAll()
+                                .requestMatchers(OPEN_APIS_V3).permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
@@ -82,19 +90,6 @@ public class SecurityConfiguration {
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         ;
         return httpSecurity.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer configureResources() {
-        return web -> web.ignoring()
-                .requestMatchers(
-                        "configuration/**",
-                        "/api/auth/**",
-                        "/v3/api-docs/**",
-                        "/swagger*/**",
-                        "/swagger-ui/**",
-                        "/webjars/**"
-                );
     }
 
     @Bean

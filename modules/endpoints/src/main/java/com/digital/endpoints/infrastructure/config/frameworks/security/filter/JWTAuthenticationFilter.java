@@ -46,7 +46,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        if (!request.getRequestURI().contains("sign-up") && !request.getRequestURI().contains("swagger")) {
+        if (!request.getRequestURI().contains("sign-") && !request.getRequestURI().contains("swagger")) {
             final String authHeader = request.getHeader("Authorization");
             if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer")) {
                 filterChain.doFilter(request, response);
@@ -72,7 +72,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     }
                 }
             } catch (Exception e) {
-                log.warn("Authorization Bearer has no token");
+                log.error("{}{}{}", "\u001B[31m", e.getLocalizedMessage(), "\u001B[37m");
             }
         }
         filterChain.doFilter(request, response);
