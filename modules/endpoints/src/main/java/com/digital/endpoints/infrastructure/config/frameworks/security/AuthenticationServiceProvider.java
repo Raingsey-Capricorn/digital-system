@@ -1,7 +1,7 @@
 package com.digital.endpoints.infrastructure.config.frameworks.security;
 
-import com.digital.endpoints.ports.incoming.request.SignInRequest;
-import com.digital.endpoints.ports.incoming.request.SignUpRequest;
+import com.digital.endpoints.infrastructure.web.request.SignInRequest;
+import com.digital.endpoints.infrastructure.web.request.SignUpRequest;
 
 /**
  * Author  : pisethraringsey.suon

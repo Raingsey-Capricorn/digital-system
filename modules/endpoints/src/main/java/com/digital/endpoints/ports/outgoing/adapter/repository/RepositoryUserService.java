@@ -30,9 +30,9 @@ public class RepositoryUserService implements UserService {
     public UserEntityVO save(UserEntityVO details) {
 
         if (repository.findByEmail(details.getEmail()).isEmpty()) {
-            log.info(">>>>>>> Saving new user : {}", details.getUser().getEmail());
+            log.info(">>>> Saving new user : {}", details.getUser().getEmail());
             return new UserEntityVO(repository.save(details.getUser()));
-        } else log.info("<<<<<<< User {} is existed, return the data from repository.", details.getEmail());
+        } else log.info("<<<< User {} is existed, return the data from repository.", details.getEmail());
         return details;
     }
 
@@ -42,7 +42,7 @@ public class RepositoryUserService implements UserService {
     @Override
     public UserDetailsService userDetailsService() {
 
-        log.info("<<<<<< loaded user from database repository");
+        log.info("<<<< loaded user from database repository");
         return username -> repository.findByEmail(username)
                 .map(UserEntityVO::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));

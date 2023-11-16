@@ -16,6 +16,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * <a href="https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html">New implementation for SS v6.1.5</a>
  * <a href="https://bootify.io/spring-security/rest-api-spring-security-with-jwt.html">Securing a REST API with Spring Security and JWT</a>
  * <a href="https://salithachathuranga94.medium.com/validation-and-exception-handling-in-spring-boot-51597b580ffd">Validation and Exception Handling in Spring Boot</a>
+ * <a href="https://www.geeksforgeeks.org/best-practices-to-secure-microservices-with-spring-security/">Best Practices to Secure Microservices with Spring Security</a>
+ * <p>
+ * mvn --settings ../../settings.xml  verify -DskipTests=true
+ * <a href="https://www.tutorialspoint.com/how-to-print-colored-text-in-java-console">ANSI Escape Codes for Text Color. </a>
  */
 @EnableDiscoveryClient
 @SpringBootApplication

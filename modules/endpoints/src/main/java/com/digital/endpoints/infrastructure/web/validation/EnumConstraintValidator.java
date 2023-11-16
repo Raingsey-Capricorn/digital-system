@@ -1,7 +1,7 @@
-package com.digital.endpoints.infrastructure.validation;
+package com.digital.endpoints.infrastructure.web.validation;
 
 import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
-import com.digital.endpoints.infrastructure.validation.annotations.EnumValidate;
+import com.digital.endpoints.infrastructure.web.validation.annotations.EnumValidate;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;

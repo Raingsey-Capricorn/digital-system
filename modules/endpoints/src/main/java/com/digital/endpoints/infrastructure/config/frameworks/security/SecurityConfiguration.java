@@ -13,6 +13,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,7 +40,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * This is new implementation, and require to apply override
  * spring.main.allow-bean-definition-overriding= true
  */
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -50,7 +50,15 @@ public class SecurityConfiguration {
     public static final String AUTHORIZED_VIEW_URL = "/api/v1/view/**";
     public static final String ADMIN_AUTHORIZED_URL = "/api/v1/admin/**";
     public static final String AUTHORIZATION_URL = "/api/v1/auth/**";
-    public static final String SECURED_ENDPOINTS = "/api/v1/public/";
+    public static final String HEALTH_CHECK = "/health";
+    private static final String[] OPEN_APIS_V3 = {
+            "configuration/**",
+            "/api/auth/**",
+            "/v3/api-docs/**",
+            "/swagger*/**",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
 
     private final UserService userService;
     private final JWTAuthenticationFilter filter;
@@ -72,12 +80,14 @@ public class SecurityConfiguration {
                         matcherRegistry
                                 .requestMatchers(ADMIN_AUTHORIZED_URL).hasAuthority(Authority.ROLE_ADMIN)
                                 .requestMatchers(AUTHORIZATION_URL).permitAll()
+                                .requestMatchers(HEALTH_CHECK).permitAll()
+                                .requestMatchers(OPEN_APIS_V3).permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
-                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         ;
         return httpSecurity.build();
     }

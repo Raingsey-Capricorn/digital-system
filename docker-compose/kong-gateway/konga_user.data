@@ -1,0 +1,12 @@
+module.exports = [
+  {
+    "admin": true,
+    "active": true,
+    "username": "admin",
+    "firstName": "Raingsey",
+    "password": "admin@KONGA14.9"
+    "lastName": "Administrator",
+    "email": "admin@sample.com"
+    "node_id": "http://localhost:8444",
+  }
+]

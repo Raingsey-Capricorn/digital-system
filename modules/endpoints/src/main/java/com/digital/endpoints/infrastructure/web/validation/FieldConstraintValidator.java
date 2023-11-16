@@ -1,7 +1,7 @@
-package com.digital.endpoints.infrastructure.validation;
+package com.digital.endpoints.infrastructure.web.validation;
 
 import com.digital.endpoints.infrastructure.utilities.StringValidatorUtil;
-import com.digital.endpoints.infrastructure.validation.annotations.StringValidate;
+import com.digital.endpoints.infrastructure.web.validation.annotations.StringValidate;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;
@@ -55,7 +55,7 @@ public class FieldConstraintValidator implements ConstraintValidator<StringValid
                     return reApplyViolationMessage(context, MESSAGE_RESERVED_WORD);
                 } else if (StringValidatorUtil.isContainingSpecialSymbol(value)) {
                     return reApplyViolationMessage(context, MESSAGE_SPECIAL_CHARACTER);
-                } else if (StringValidatorUtil.isLongerThan(value, limit)) {
+                } else if (StringValidatorUtil.isLongerThan(limit, value)) {
                     return reApplyViolationMessage(context, String.format(MESSAGE_LONGER_THAN, limit));
                 } else return true;
             }

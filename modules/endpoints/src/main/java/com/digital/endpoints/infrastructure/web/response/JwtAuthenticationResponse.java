@@ -1,4 +1,4 @@
-package com.digital.endpoints.ports.incoming.response;
+package com.digital.endpoints.infrastructure.web.response;
 
 
 import lombok.AllArgsConstructor;

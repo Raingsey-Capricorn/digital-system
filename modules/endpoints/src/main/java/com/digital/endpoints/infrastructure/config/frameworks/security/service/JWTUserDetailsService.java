@@ -1,7 +1,7 @@
 package com.digital.endpoints.infrastructure.config.frameworks.security.service;
 
-import com.digital.endpoints.infrastructure.config.frameworks.security.constants.Authority;
 import com.digital.endpoints.infrastructure.config.frameworks.security.JWTService;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.Authority;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -34,11 +34,19 @@ public class JWTUserDetailsService implements JWTService {
     private final Date tokenCreatedAt = new Date();
     private final Date tokenValidity = new Date(tokenCreatedAt.getTime() + TimeUnit.MINUTES.toMillis(tokenExpiryDuration));
 
+    /**
+     * @param token
+     * @return
+     */
     @Override
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /**
+     * @param userDetails
+     * @return
+     */
     @Override
     public String generateToken(UserDetails userDetails) {
 
@@ -48,6 +56,11 @@ public class JWTUserDetailsService implements JWTService {
         }}, userDetails);
     }
 
+    /**
+     * @param token
+     * @param userDetails
+     * @return
+     */
     @Override
     public boolean isTokenValid(String token, UserDetails userDetails) {
         return (extractUserName(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
@@ -61,7 +74,7 @@ public class JWTUserDetailsService implements JWTService {
      */
     private <T> T extractClaim(String token, Function<Claims, T> claimsResolvers) {
         final Claims claims = Jwts.parser()
-                .verifyWith(decodeHmacShaKey())
+                .verifyWith(this.decodeHmacShaKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
