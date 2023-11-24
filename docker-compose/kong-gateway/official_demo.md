@@ -18,9 +18,12 @@ https://github.com/anastayaa/Kong-API-Gateway-and-Spring-Boot-Microservices
 https://tech.david-cheong.com/kong-api-gateway-docker-demo/
 </br><u><b>NGINX configuration</b></u></br>
 https://www.solo.io/topics/nginx/nginx-configuration/
-</br><u><b>NGINX Configuration Guide</u></b>
+</br><u><b>NGINX Configuration Guide</u></br>
 https://www.plesk.com/blog/various/nginx-configuration-guide/
-</br><u><b>Kong Gateway</u></b>
+</br><u><b>Kong Gateway</u></b></br>
 https://docs.konghq.com/gateway/3.4.x/
-</br><u><b>KONG - JWT</u></b>
+</br><u><b>KONG - JWT</u></b></br>
 https://docs.konghq.com/hub/kong-inc/jwt/#create-a-jwt-credential
+---
+<b><u>Spring Boot Application Load Balancing with Nginx (and Docker)</u></b></br>
+https://blog.devgenius.io/load-balancing-a-spring-boot-application-with-nginx-and-docker-e701f74c011d

@@ -1,9 +1,9 @@
 package com.digital.endpoints.infrastructure.config.frameworks.security.service;
 
 import com.digital.endpoints.domain.vo.UserEntityVO;
-import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import com.digital.endpoints.infrastructure.config.frameworks.security.AuthenticationServiceProvider;
 import com.digital.endpoints.infrastructure.config.frameworks.security.JWTService;
+import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import com.digital.endpoints.infrastructure.web.request.SignInRequest;
 import com.digital.endpoints.infrastructure.web.request.SignUpRequest;
 import com.digital.endpoints.infrastructure.web.response.JwtAuthenticationResponse;
@@ -29,10 +29,10 @@ import java.util.concurrent.atomic.AtomicReference;
 @RequiredArgsConstructor
 public class AuthenticationService implements AuthenticationServiceProvider<JwtAuthenticationResponse> {
 
-    private final JWTService jwtService;
-    private final PasswordEncoder passwordEncoder;
-    private final RepositoryUserService userService;
     private final AuthenticationManager authenticationManager;
+    private final RepositoryUserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final JWTService jwtService;
 
     /**
      * @param request : SignUpRequest

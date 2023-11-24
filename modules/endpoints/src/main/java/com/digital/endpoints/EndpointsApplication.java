@@ -19,6 +19,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * <a href="https://www.geeksforgeeks.org/best-practices-to-secure-microservices-with-spring-security/">Best Practices to Secure Microservices with Spring Security</a>
  * <p>
  * mvn --settings ../../settings.xml  verify -DskipTests=true
+ * <a href="https://www.tutorialspoint.com/how-to-print-colored-text-in-java-console">ANSI Escape Codes for Text Color. </a>
  */
 @EnableDiscoveryClient
 @SpringBootApplication

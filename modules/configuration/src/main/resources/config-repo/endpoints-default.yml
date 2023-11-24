@@ -1,11 +1,14 @@
 server:
-  port: 10000
+  port: ${ENDPOINTS_PORT:10000}
 eureka:
+  instance:
+    prefer-ip-address: true
+#    hostname: ${ENDPOINTS_PORT:localhost}
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:9999/eureka/
+      defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
 spring:
   security:
     user:
@@ -22,7 +25,7 @@ spring:
       hibernate:
         format_sql: false
   datasource:
-    url: jdbc:mysql://localhost:3306/sample
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/sample
     username: root
     password: QWEqwe123@
     driver-class-name: com.mysql.cj.jdbc.Driver
