@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  config-server:
+    image: pisethraingsey/configuration:1.0-SNAPSHOT
+    restart: always
+    hostname: config-server
+    networks:
+      - default
+    expose:
+      - "7777"
+
+networks:
+  default:
+    name: kong-net

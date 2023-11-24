@@ -2,7 +2,7 @@ version: "3.9"
 services:
   #######################################
   # Postgres: Kong Database
-  # ! Postgres 11.16 is the latest version that supported by Konga v0.14.9
+  # ! Postgres v11.16 is the latest version that supported by Konga v0.14.9
   #######################################
   postgres:
     image: postgres:11.16
@@ -66,7 +66,12 @@ services:
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
       KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
       KONG_ADMIN_LISTEN_SSL: 0.0.0.0:8444
-    command: "kong start"
+    command: "kong start; 
+    curl --location --request POST 'http://localhost:8001/services/' \ --header 'Content-Type: application/json' \ --data-raw '{ \"name\": \"admin-api\", \"host\": \"localhost\", \"port\": 8001 }';
+    curl --location --request POST 'http://localhost:8001/services/{service_id|service_name}/routes' \ --header 'Content-Type: application/json' \ --data-raw '{ \"paths\": [\"/admin-api\"] }'
+    curl localhost:8000/admin-api/;
+    curl -X POST http://localhost:8001/services/{service_id|service_name}/plugins \ --data \"name=key-auth\"
+    "
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://nginx:8001" ]
       interval: 5s
@@ -99,7 +104,9 @@ services:
     links:
       - postgres
     platform: "linux/amd64"
-    command: "-c prepare -a postgres -u postgresql://kong:kong@kong-database:5432/kong"
+    command: "-c prepare -a postgres -u postgresql://kong:kong@kong-database:5432/kong;
+    curl --location --request POST 'http://localhost:8001/consumers/' \ --form 'username=konga' \ --form 'custom_id={{custom_id}}'
+    curl --location --request POST ‘http://localhost:8001/consumers/{{consumer_id}}/key-auth'"
   #######################################
   # Konga: GUI of KONG Admin API
   #######################################
@@ -115,25 +122,96 @@ services:
     expose:
       - "1337"
 
+  #############################################
+  # Digital System : build block
+  #############################################
+  # ---- Spring cloud MySql
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    cap_add:
+      - SYS_NICE
+    restart: always
+    env_file:
+      - digital_system.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldb:/var/lib/mysql
+    # seeding data in case of needed
+    #      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_DATABASE=sample
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=QWEqwe123@
+      # jdbc:mysql://localhost:3306/lhtk
+      # connection string : jdbc:mysql://root:QWEqwe123@localhost:3306/sample
+  # ---- config server
+  config:
+    image: pisethraingsey/configuration:1.0-SNAPSHOT
+    container_name: config
+    restart: always
+    env_file:
+      - digital_system.env
+    networks:
+      - default
+    expose:
+      - "7777"
+  # ---- discovery
+  discovery:
+    image: pisethraingsey/discovery:1.0-SNAPSHOT
+    container_name: discovery
+    restart: no
+    env_file:
+      - digital_system.env
+    depends_on:
+      config:
+        condition: service_started
+    networks:
+      - default
+    ports:
+      - "9999:9999"
+  # ---- endpoints
+  endpoints:
+    image: pisethraingsey/endpoints:1.0-SNAPSHOT
+    container_name: endpoints
+    restart: no
+    env_file:
+      - digital_system.env
+    depends_on:
+      config:
+        condition: service_started
+      mysql:
+        condition: service_started
+    networks:
+      - default
+    ports:
+      - "10000:10000"
+
   #######################################
   # NGinX: Load Balancer
   #######################################
-  ngix:
-    image: nginx:latest
-    container_name: ngix
-    networks:
-      - default
+  nginx:
+    image: nginx:1.25-alpine-slim
+    container_name: nginx
     restart: always
     depends_on:
       - kong
       - konga
+    networks:
+      - default
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "8000:8000"
       - "8001:8001"
       - "1337:1337"
+      - "7777:7777"
 
 networks:
   default:
     name: kong-net
+
+volumes:
+  mysqldb:
+    driver: local
