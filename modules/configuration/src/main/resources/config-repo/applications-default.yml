@@ -1,0 +1,11 @@
+server:
+  port: ${APPLICATION_PORT:11000}
+eureka:
+  instance:
+    prefer-ip-address: true
+  #    hostname: ${ENDPOINTS_PORT:localhost}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
