@@ -1,6 +1,5 @@
 package com.digital.endpoints.ports.outgoing;
 
-import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**

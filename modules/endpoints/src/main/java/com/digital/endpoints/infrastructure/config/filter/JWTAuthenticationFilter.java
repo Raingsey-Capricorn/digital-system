@@ -1,6 +1,6 @@
-package com.digital.endpoints.infrastructure.config.frameworks.security.filter;
+package com.digital.endpoints.infrastructure.config.filter;
 
-import com.digital.endpoints.infrastructure.config.frameworks.security.JWTService;
+import com.digital.endpoints.infrastructure.config.security.JWTService;
 import com.digital.endpoints.ports.outgoing.adapter.repository.RepositoryUserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -34,9 +34,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private final RepositoryUserService userService;
 
     /**
-     * @param request           : request with credential
-     * @param response          : response for further process
-     * @param filterChain       : spring filter chain
+     * @param request     : request with credential
+     * @param response    : response for further process
+     * @param filterChain : spring filter chain
      * @throws ServletException : exception related to Servlet
      * @throws IOException      : Input-Output exception
      */
@@ -46,7 +46,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        log.info("{}", request.getRequestURL());
         if (!request.getRequestURI().contains("sign-") && !request.getRequestURI().contains("swagger")) {
             final String authHeader = request.getHeader("Authorization");
             if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer")) {
