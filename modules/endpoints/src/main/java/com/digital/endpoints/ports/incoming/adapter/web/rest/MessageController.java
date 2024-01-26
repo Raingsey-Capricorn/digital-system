@@ -1,11 +1,15 @@
 package com.digital.endpoints.ports.incoming.adapter.web.rest;
 
+import com.digital.endpoints.infrastructure.web.response.PersonResponse;
 import com.digital.endpoints.ports.incoming.MessageInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
 
 /**
  * Author  : pisethraringsey.suon
@@ -16,13 +20,26 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/public")
+@PreAuthorize(value = "hasAnyAuthority('ADMIN','SYSTEM','USER')")
 public class MessageController implements MessageInterface {
 
     @Override
     @GetMapping("/message")
-    public ResponseEntity<?> testMessage() {
-
+    public ResponseEntity<?> getMessage() {
         log.info(">>>> Simple message from endpoint.");
-        return ResponseEntity.ok("Hello");
+        return ResponseEntity.ok("Hello from Endpoint");
+    }
+
+    @Override
+    @GetMapping("/person")
+    public ResponseEntity<?> getResponseBody() {
+        log.info(">>>> Simple response data from endpoint.");
+        return ResponseEntity.ok(
+                new PersonResponse(
+                        UUID.randomUUID(),
+                        "Sok",
+                        "Chanrotha",
+                        "M")
+        );
     }
 }

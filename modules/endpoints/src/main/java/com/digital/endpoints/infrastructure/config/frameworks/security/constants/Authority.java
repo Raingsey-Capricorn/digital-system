@@ -14,4 +14,5 @@ public abstract class Authority {
     public static final String ROLE_PREFIX = "ROLE_";
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_USER = "USER";
+    public static final String SYSTEM_USER = "SYSTEM";
 }

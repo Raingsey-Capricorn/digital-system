@@ -1,0 +1,26 @@
+server:
+  port: ${SERVICE_RATE_PORT:12000}
+eureka:
+  instance:
+    prefer-ip-address: true
+  #    hostname: ${ENDPOINTS_PORT:localhost}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
+spring:
+  jpa:
+    database: mysql
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/sample
+    username: root
+    password: QWEqwe123@
+    driver-class-name: com.mysql.cj.jdbc.Driver

@@ -188,6 +188,23 @@ services:
     ports:
       - "10000:10000"
 
+  # ---- applications
+  applications:
+    image: pisethraingsey/applications:1.0-SNAPSHOT
+    container_name: applications
+    restart: no
+    env_file:
+      - digital_system.env
+    depends_on:
+      config:
+        condition: service_started
+      mysql:
+        condition: service_started
+    networks:
+      - default
+    ports:
+      - "11000:11000"
+
   #######################################
   # NGinX: Load Balancer
   #######################################
