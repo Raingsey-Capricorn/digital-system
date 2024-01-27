@@ -1,0 +1,2 @@
+-- INSERT INTO CATALOG.t_configuration_var (code, value, name, status, create_time, update_time)
+-- VALUES ('ENABLE_WHITELIST', '1', 'Enable check whitelist api flag', 1, now(), now());

@@ -3,7 +3,7 @@ server:
 eureka:
   instance:
     prefer-ip-address: true
-#    hostname: ${DISCOVERY_HOST:localhost}
+    #    hostname: ${DISCOVERY_HOST:localhost}
     homePageUrl: https://${eureka.instance.hostname}/
     statusPageUrl: https://${eureka.instance.hostname}/info
     healthCheckUrl: https://${eureka.instance.hostname}/health
@@ -11,7 +11,7 @@ eureka:
     fetch-registry: false
     register-with-eureka: false
     service-url:
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
 spring:
   security:

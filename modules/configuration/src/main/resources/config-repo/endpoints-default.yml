@@ -9,6 +9,13 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info # Endpoint IDs that should be included or '*' for all.
+      base-path: /actuator
+
 spring:
   security:
     user:
