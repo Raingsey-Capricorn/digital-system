@@ -10,5 +10,6 @@ import org.springframework.http.ResponseEntity;
  */
 public interface MessageInterface {
 
-    ResponseEntity<?> testMessage();
+    ResponseEntity<?> getMessage();
+    ResponseEntity<?> getResponseBody();
 }

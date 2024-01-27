@@ -1,0 +1,13 @@
+server:
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: services-monitor
+  config:
+    import: configserver:http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:7777}
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:7777}
