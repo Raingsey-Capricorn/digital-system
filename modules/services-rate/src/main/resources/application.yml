@@ -1,0 +1,18 @@
+server:
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: services-rate
+  config:
+    import: configserver:http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:7777}
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:7777}
+
+#webclient:
+#  endpoints:
+#    base-url: http://${ENDPOINTS_HOST:localhost}:${ENDPOINTS_PORT:10000}
+#    authorization: eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImFub255bW91c0BkaWdpdGFsc3lzdGVtLmNvbSIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJTWVNURU0ifV0sImlhdCI6MTcwNTk4MjMwMSwiZXhwIjoxOTIxOTgyMzAxLCJpc3MiOiJBRE1JTiIsInN1YiI6ImFub255bW91c0BkaWdpdGFsc3lzdGVtLmNvbSJ9.E2bqQWEqNELk1cFGMYTqaS-M-5-fNCk-wq8RQTxsrl9PqFsZf655eUL8NWJZZLev33DojWkCNqNfeJOYsdup2w

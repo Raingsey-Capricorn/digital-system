@@ -67,6 +67,9 @@
         <module>modules/discovery</module>
         <module>modules/endpoints</module>
         <module>modules/gateway</module>
+        <module>modules/applications</module>
+        <module>modules/services-rate</module>
+        <module>modules/services-loan</module>
     </modules>
     <!--  include all the modules, when build the parent project  -->
     <profiles>
@@ -77,6 +80,9 @@
                 <module>modules/discovery</module>
                 <module>modules/endpoints</module>
                 <module>modules/gateway</module>
+                <module>modules/applications</module>
+                <module>modules/services-loan</module>
+                <module>modules/services-rate</module>
             </modules>
         </profile>
     </profiles>
