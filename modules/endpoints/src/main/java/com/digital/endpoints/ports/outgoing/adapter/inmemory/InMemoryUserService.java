@@ -1,6 +1,6 @@
 package com.digital.endpoints.ports.outgoing.adapter.inmemory;
 
-import com.digital.endpoints.domain.vo.UserEntityVO;
+import com.digital.endpoints.domain.business.UserEntityModel;
 import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.Getter;
@@ -94,7 +94,7 @@ public class InMemoryUserService implements UserService {
             final AuthorizationRole role) {
 
         final PasswordEncoder encoder = new BCryptPasswordEncoder();
-        return User.withUserDetails(new UserEntityVO()
+        return User.withUserDetails(new UserEntityModel()
                 .setEmail(email)
                 .setLastName(lastName)
                 .setFirstName(fistName)

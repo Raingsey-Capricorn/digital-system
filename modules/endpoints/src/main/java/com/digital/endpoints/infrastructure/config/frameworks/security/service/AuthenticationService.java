@@ -1,6 +1,6 @@
 package com.digital.endpoints.infrastructure.config.frameworks.security.service;
 
-import com.digital.endpoints.domain.vo.UserEntityVO;
+import com.digital.endpoints.domain.business.UserEntityModel;
 import com.digital.endpoints.infrastructure.config.frameworks.security.AuthenticationServiceProvider;
 import com.digital.endpoints.infrastructure.config.frameworks.security.JWTService;
 import com.digital.endpoints.infrastructure.config.frameworks.security.constants.AuthorizationRole;
@@ -42,14 +42,14 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
     @Override
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-        var user = new UserEntityVO()
+        var user = new UserEntityModel()
                 .setFirstName(request.firstName())
                 .setLastName(request.lastName())
                 .setEmail(request.email())
                 .setPassword(passwordEncoder.encode(request.password()))
                 .setRole(AuthorizationRole.valueOf(request.role().name()));
 
-        AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
+        final var response = new AtomicReference<JwtAuthenticationResponse>();
         Optional.ofNullable(userService.save(user))
                 .ifPresent(entityVO -> response.set(JwtAuthenticationResponse
                         .builder()
@@ -73,7 +73,7 @@ public class AuthenticationService implements AuthenticationServiceProvider<JwtA
                         request.password())
         );
 
-        AtomicReference<JwtAuthenticationResponse> response = new AtomicReference<>();
+        final var response = new AtomicReference<JwtAuthenticationResponse>();
         Optional.ofNullable(userService.userDetailsService()
                         .loadUserByUsername(request.email()))
                 .ifPresent(entityVO -> response.set(JwtAuthenticationResponse

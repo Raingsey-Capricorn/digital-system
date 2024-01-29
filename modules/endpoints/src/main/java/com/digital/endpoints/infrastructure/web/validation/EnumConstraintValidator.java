@@ -7,8 +7,6 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Objects;
-
 /**
  * Author  : pisethraringsey.suon
  * Email   : pisethraingsey@dr-tech.com
@@ -26,6 +24,6 @@ public class EnumConstraintValidator implements ConstraintValidator<EnumValidate
     @Override
     @SneakyThrows
     public boolean isValid(Enum anEnum, ConstraintValidatorContext constraintValidatorContext) {
-        return !Objects.isNull(AuthorizationRole.valueOf(anEnum.name()));
+        return AuthorizationRole.list().contains(AuthorizationRole.valueOf(anEnum.name()));
     }
 }

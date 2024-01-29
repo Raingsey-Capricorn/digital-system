@@ -1,20 +1,28 @@
 server:
   port: ${DISCOVERY_PORT:9999}
+
 eureka:
   instance:
     prefer-ip-address: true
     #    hostname: ${DISCOVERY_HOST:localhost}
-    homePageUrl: https://${eureka.instance.hostname}/
+    homePageUrl: https://${eureka.instance.hostname}
     statusPageUrl: https://${eureka.instance.hostname}/info
     healthCheckUrl: https://${eureka.instance.hostname}/health
   client:
+    healthcheck:
+      enabled: true
     fetch-registry: false
     register-with-eureka: false
     service-url:
       #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
+
 spring:
   security:
     user:
       name: admin
       password: admin@123
+  boot:
+    admin:
+      routes:
+        endpoints: env, metrics, trace, jolokia, info, configprops

@@ -1,6 +1,6 @@
 package com.digital.endpoints.ports.outgoing.adapter.repository;
 
-import com.digital.endpoints.domain.vo.UserEntityVO;
+import com.digital.endpoints.domain.business.UserEntityModel;
 import com.digital.endpoints.infrastructure.database.repositories.UserRepository;
 import com.digital.endpoints.ports.outgoing.UserService;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +27,11 @@ public class RepositoryUserService implements UserService {
     /**
      * @param details :
      */
-    public UserEntityVO save(UserEntityVO details) {
+    public UserEntityModel save(UserEntityModel details) {
 
         if (repository.findByEmail(details.getEmail()).isEmpty()) {
             log.info(">>>> Saving new user : {}", details.getUser().getEmail());
-            return new UserEntityVO(repository.save(details.getUser()));
+            return new UserEntityModel(repository.save(details.getUser()));
         } else log.info("<<<< User {} is existed, return the data from repository.", details.getEmail());
         return details;
     }
@@ -44,7 +44,7 @@ public class RepositoryUserService implements UserService {
 
         log.info("<<<< loaded user from database repository");
         return username -> repository.findByEmail(username)
-                .map(UserEntityVO::new)
+                .map(UserEntityModel::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

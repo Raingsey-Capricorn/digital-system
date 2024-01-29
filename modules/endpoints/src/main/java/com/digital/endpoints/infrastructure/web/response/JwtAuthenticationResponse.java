@@ -1,10 +1,8 @@
 package com.digital.endpoints.infrastructure.web.response;
 
 
-import lombok.AllArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * Author  : pisethraringsey.suon
@@ -12,10 +10,9 @@ import lombok.NoArgsConstructor;
  * Date    : 5/10/23
  * Project : com.digital.system
  */
-@Data
+
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class JwtAuthenticationResponse {
-    private String token;
+public record JwtAuthenticationResponse(
+        @Schema(name = "token", description = "Access Token")
+        String token) {
 }

@@ -30,6 +30,16 @@ management:
   health:
     circuitbreakers:
       enabled: true
+jwt:
+  secret:
+    key: ${JWT_SECRET_KEY}
+
+logging:
+  level:
+    org:
+      springframework:
+        web: info
+      hibernate: error
 
 resilience4j:
   circuitbreaker:

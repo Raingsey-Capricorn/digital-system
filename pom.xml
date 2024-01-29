@@ -6,20 +6,21 @@
     <packaging>pom</packaging>
     <groupId>com.digital</groupId>
     <artifactId>com.digital.system</artifactId>
-    <name>Digital-System</name>
+    <name>Digital-System-Parent</name>
     <version>1.0-SNAPSHOT</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.2.5</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-cloud.version>2022.0.4</spring-cloud.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <spring-boot.version>3.1.3</spring-boot.version>
+        <spring-boot.version>${parent.version}}</spring-boot.version>
+        <msql-connector.version>8.2.0</msql-connector.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +72,7 @@
         <module>modules/services-rate</module>
         <module>modules/services-loan</module>
         <module>modules/services-monitor</module>
+        <module>modules/services-authentication</module>
     </modules>
     <!--  include all the modules, when build the parent project  -->
     <profiles>

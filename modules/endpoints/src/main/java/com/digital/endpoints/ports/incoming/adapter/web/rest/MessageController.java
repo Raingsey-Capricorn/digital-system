@@ -35,11 +35,13 @@ public class MessageController implements MessageInterface {
     public ResponseEntity<?> getResponseBody() {
         log.info(">>>> Simple response data from endpoint.");
         return ResponseEntity.ok(
-                new PersonResponse(
-                        UUID.randomUUID(),
-                        "Sok",
-                        "Chanrotha",
-                        "M")
+                PersonResponse
+                        .builder()
+                        .id(UUID.randomUUID())
+                        .gender("M")
+                        .firstName("Sok")
+                        .lastName("Chanrotha")
+                        .build()
         );
     }
 }

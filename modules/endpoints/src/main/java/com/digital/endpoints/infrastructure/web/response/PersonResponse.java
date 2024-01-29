@@ -1,7 +1,7 @@
 package com.digital.endpoints.infrastructure.web.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
 import java.util.UUID;
 
@@ -11,11 +11,16 @@ import java.util.UUID;
  * Date    : 22/1/24
  * Project : com.digital.system
  */
-@Data
-@AllArgsConstructor
-public class PersonResponse {
-    private UUID id;
-    private String firstName;
-    private String lastName;
-    private String gender;
+
+@Builder
+public record PersonResponse(
+
+        @Schema(name = "ID", description = "UUID of this record")
+        UUID id,
+        @Schema(name = "firstName", description = "FirstName of this User")
+        String firstName,
+        @Schema(name = "lastName", description = "LastName of this User")
+        String lastName,
+        @Schema(name = "gender", description = "Gender of this User")
+        String gender) {
 }

@@ -7,6 +7,8 @@ eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
+    healthcheck:
+      enabled: true
     service-url:
       defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9999}/eureka/
 
@@ -16,3 +18,6 @@ management:
       exposure:
         include: health,info # Endpoint IDs that should be included or '*' for all.
       base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
