@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "ea447961-588b-4099-9bbd-590a322aa70c",
+		"name": "R&D-Spring-Clouds",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31051127",
+		"_collection_link": "https://gold-comet-984128.postman.co/workspace/My-Workspace~fa82086f-bb0f-44d6-8d27-fc3750f3eecc/collection/31051127-ea447961-588b-4099-9bbd-590a322aa70c?action=share&source=collection_link&creator=31051127"
+	},
+	"item": [
+		{
+			"name": "registration",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"anonymous@digitalsystem.com\",\n    \"password\": \"anonymous@123anonymous\",\n    \"lastName\": \"anonymous\",\n    \"firstName\": \"anonymous\",\n    \"role\": \"SYSTEM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_address}}:{{host_port}}/api/v1/auth/sign-up",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "{{host_port}}",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@digitalsystem.com\",\n    \"password\": \"admin@123ADMIN\"\n    // \"email\": \"anonymous@digitalsystem.com\",\n    // \"password\": \"anonymous@123anonymous\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_address}}:{{host_port}}/api/v1/auth/sign-in",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "{{host_port}}",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "PublicMessage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:{{host_port}}/api/v1/public/message",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "{{host_port}}",
+							"path": [
+								"api",
+								"v1",
+								"public",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuthenticatedMessage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:{{host_port}}/api/v1/admin",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "{{host_port}}",
+							"path": [
+								"api",
+								"v1",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client-Access-Message",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:11000/message/",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "11000",
+							"path": [
+								"message",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client-Access-Message/Data",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:11000/message/data",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "11000",
+							"path": [
+								"message",
+								"data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client-Access-Message/Time-to-Cardinal-Time",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:11000/message/hour-to-cardinal?time=7:25am",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "11000",
+							"path": [
+								"message",
+								"hour-to-cardinal"
+							],
+							"query": [
+								{
+									"key": "time",
+									"value": "7:25am"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Resilience",
+			"item": [
+				{
+					"name": "Rate-Service",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:12000/api/v1/rates",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "12000",
+							"path": [
+								"api",
+								"v1",
+								"rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rate-Service/rate with type",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:12000/api/v1/rate?type=PERSONAL",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "12000",
+							"path": [
+								"api",
+								"v1",
+								"rate"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "PERSONAL"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loan-Service",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:13000/api/v1/loans?type=PERSONAL",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "13000",
+							"path": [
+								"api",
+								"v1",
+								"loans"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "PERSONAL"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loan-Service Resilience",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_address}}:13000/actuator/health",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "13000",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
